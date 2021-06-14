@@ -11,7 +11,7 @@ import io.grpc.stub.StreamObserver;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
-public class GreetingClientStreamingClient {
+public class GreetingBiDirectionalStreamingClient {
 
 	private static GreetRequest createRequest(String name) {
 		Greeting greeting = Greeting.newBuilder()
@@ -32,11 +32,10 @@ public class GreetingClientStreamingClient {
 		// create an async client
 		GreetServiceGrpc.GreetServiceStub asyncClient = GreetServiceGrpc.newStub(channel);
 		CountDownLatch latch = new CountDownLatch(1);
-		StreamObserver<GreetRequest> request = asyncClient.greetClientStreaming(new StreamObserver<GreetResponse>() {
+		StreamObserver<GreetRequest> request = asyncClient.greetBiDirectional(new StreamObserver<GreetResponse>() {
 			@Override
 			public void onNext(GreetResponse value) {
-				// server will call it only once
-				// as client only is streaming, not the server
+				// server will call it multiple times
 				System.out.println("onNext from server");
 				System.out.println("response: " + value.getResult());
 			}

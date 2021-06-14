@@ -1,7 +1,6 @@
 package com.learn.grpc.server;
 
 import com.learn.grpc.service.GreetingServiceImpl;
-import com.learn.grpc.service.SumServiceImpl;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
 
@@ -11,7 +10,6 @@ public class Application {
 	public static void main(String[] args) throws InterruptedException, IOException {
 		Server server = ServerBuilder.forPort(50051)
 				.addService(new GreetingServiceImpl())
-				.addService(new SumServiceImpl())
 				.build();
 
 		server.start();

@@ -19,4 +19,6 @@ message GreetResponse {
 service GreetService {
 	rpc Greet(GreetRequest) returns (GreetResponse) {}
 	rpc GreetStreaming(GreetRequest) returns (stream GreetResponse) {}
+	rpc GreetClientStreaming(stream GreetRequest) returns (GreetResponse) {}
+	rpc GreetBiDirectional(stream GreetRequest) returns (stream GreetResponse) {}
 }
